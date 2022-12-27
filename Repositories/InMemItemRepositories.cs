@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using RestService.Entities;
 
 namespace RestService.Repositories
@@ -12,12 +11,31 @@ namespace RestService.Repositories
             new Item {Id = Guid.NewGuid(), Name = "Bronze Shield", Price = 20, CreatedDate = DateTimeOffset.UtcNow},
         };
 
-        public IEnumerable<Item> GetItems() {
+        public IEnumerable<Item> GetItems()
+        {
             return items;
         }
 
-        public Item GetItem(Guid id) {
+        public Item GetItem(Guid id)
+        {
             return items.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void CreateItem (Item item)
+        {
+            items.Add(item);
+        }
+
+        void IItemsRepository.UpdateItem(Item item)
+        {
+            var index = items.FindIndex(existingItem => existingItem.Id == item.Id);
+            items[index] = item;
+        }
+
+        void IItemsRepository.DeleteItem(Guid id)
+        {
+            var index = items.FindIndex(existingItem => existingItem.Id == id);
+            items.RemoveAt(index);
         }
     }
 }
