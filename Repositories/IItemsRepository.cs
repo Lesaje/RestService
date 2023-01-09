@@ -10,7 +10,7 @@ namespace RestService.Repositories
 
         Task CreateItemAsync (Item item);
 
-        Task UpdateItemAsync(Item item);
+        Task ReplaseItemAsync(Item item);
 
         Task DeleteItemAsync (Guid id);
     }

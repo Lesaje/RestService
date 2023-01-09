@@ -17,15 +17,14 @@ namespace RestService.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ItemDto>> GetItemsAsync()
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
-            var items = (await repository.GetItemsAsync())
-                        .Select(item => item.AsDto());
+            var items = await repository.GetItemsAsync();
             return items;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemDto>> GetItemAsync(Guid id)
+        public async Task<ActionResult<Item>> GetItemAsync(Guid id)
         {
             var item = await repository.GetItemAsync(id);
 
@@ -34,11 +33,11 @@ namespace RestService.Controllers
                 return NotFound();
             }
 
-            return Ok(item.AsDto());
+            return Ok(item);
         }
     
         [HttpPost]
-        public async Task<ActionResult<ItemDto>> CreateItemAsync (CreateItemDto itemDto)
+        public async Task<ActionResult<Item>> CreateItemAsync (CreateItemDto itemDto)
         {
             Item item = new() {
                 Id = Guid.NewGuid(),
@@ -49,7 +48,7 @@ namespace RestService.Controllers
 
             await repository.CreateItemAsync(item);
 
-            return CreatedAtAction(nameof(GetItemAsync), new {id = item.Id}, item.AsDto());
+            return CreatedAtAction(nameof(GetItemAsync), new {id = item.Id}, item);
         }
         
         [HttpPut("{id}")]
@@ -66,7 +65,7 @@ namespace RestService.Controllers
                 Price = itemDto.Price
             };
 
-            await repository.UpdateItemAsync(updatedItem);
+            await repository.ReplaseItemAsync(updatedItem);
             return NoContent();
         }
 

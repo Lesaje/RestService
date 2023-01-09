@@ -18,7 +18,6 @@ namespace RestService.Repositories
             itemsCollection = database.GetCollection<Item>(collectionName);
         }
 
-
         public async Task<Item> GetItemAsync(Guid id)
         {
             var filter = filterBuilder.Eq(item => item.Id, id);
@@ -27,23 +26,20 @@ namespace RestService.Repositories
 
         public async Task<IEnumerable<Item>> GetItemsAsync()
         { 
-            return await itemsCollection.Find(new BsonDocument()).ToListAsync();    // why not FindAsync
+            return await itemsCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-        
         public async Task CreateItemAsync(Item item)
         {
             await itemsCollection.InsertOneAsync(item);
         }
 
-
-        public async Task UpdateItemAsync(Item item)
+        public async Task ReplaseItemAsync(Item item)
         {
             var filter = filterBuilder.Eq(existingItem => existingItem.Id, item.Id);
             await itemsCollection.ReplaceOneAsync(filter, item);
         }
 
-        
         public async Task DeleteItemAsync(Guid id)
         {
             var filter = filterBuilder.Eq(item => item.Id, id);

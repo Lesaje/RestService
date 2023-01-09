@@ -28,7 +28,7 @@ namespace RestService.Repositories
             await Task.CompletedTask;
         }
 
-        public async Task UpdateItemAsync(Item item)
+        public async Task ReplaseItemAsync(Item item)
         {
             var index = items.FindIndex(existingItem => existingItem.Id == item.Id);
             items[index] = item;

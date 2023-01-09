@@ -13,8 +13,7 @@ builder.Services.AddControllers(options =>
 {
     options.SuppressAsyncSuffixInActionNames = false;
 });
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
 {
     var settings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
@@ -24,12 +23,6 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
 builder.Services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 
