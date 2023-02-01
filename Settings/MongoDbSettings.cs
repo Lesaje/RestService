@@ -12,7 +12,7 @@ namespace RestService.Settings
             get
             {
                 return $"mongodb://{User}:{Password}@{Host}:{Port}";
-            }
+            } 
         }
     }
 }
