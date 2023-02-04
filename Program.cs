@@ -26,6 +26,7 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
 });
 
 builder.Services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
+
 builder.Services.AddHealthChecks().AddMongoDb(
     mongoDbSettings.ConnectionString,
     name: "mongodb",
@@ -34,7 +35,9 @@ builder.Services.AddHealthChecks().AddMongoDb(
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+if (builder.Environment.IsDevelopment() == true) {
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
