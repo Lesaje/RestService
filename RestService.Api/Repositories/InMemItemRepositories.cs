@@ -1,6 +1,6 @@
-using RestService.Entities;
+using RestService.Api.Entities;
 
-namespace RestService.Repositories
+namespace RestService.Api.Repositories
 {
     public class InMemItemsRepository : IItemsRepository
     {

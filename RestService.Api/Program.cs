@@ -2,11 +2,10 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using RestService.Repositories;
-using RestService.Settings;
+using RestService.Api.Repositories;
+using RestService.Api.Settings;
 using System.Net.Mime;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 BsonSerializer.RegisterSerializer(new GuidSerializer(MongoDB.Bson.BsonType.String));
 BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(MongoDB.Bson.BsonType.String));

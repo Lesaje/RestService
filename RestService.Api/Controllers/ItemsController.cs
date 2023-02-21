@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using RestService.Repositories;
-using RestService.Entities;
-using RestService.Dtos;
+using RestService.Api.Repositories;
+using RestService.Api.Entities;
+using RestService.Api.Dtos;
 
-namespace RestService.Controllers
+namespace RestService.Api.Controllers
 {
     [ApiController]
     [Route("items")]
@@ -11,15 +11,19 @@ namespace RestService.Controllers
     {
         private readonly IItemsRepository repository;
 
-        public ItemsController(IItemsRepository repository)
+        private readonly ILogger<ItemsController> logger;
+
+        public ItemsController(IItemsRepository repository, ILogger<ItemsController> logger)
         {
             this.repository = repository;
+            this.logger = logger;
         }
 
         [HttpGet]
         public async Task<IEnumerable<Item>> GetItemsAsync()
         {
             var items = await repository.GetItemsAsync();
+            logger.LogInformation($"{DateTime.UtcNow.ToString("hh:mm:ss")}: Retrieved {items.Count()} items");
             return items;
         }
 

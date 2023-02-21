@@ -1,7 +1,4 @@
-using RestService.Dtos;
-using RestService.Entities;
-
-namespace RestService
+namespace RestService.Api
 {
     public static class Exstention
     {

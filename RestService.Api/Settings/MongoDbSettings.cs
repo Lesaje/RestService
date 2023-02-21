@@ -1,4 +1,4 @@
-namespace RestService.Settings
+namespace RestService.Api.Settings
 {
     public class MongoDbSettings
     {

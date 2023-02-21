@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RestService.Dtos
+namespace RestService.Api.Dtos
 {
     public record CreateItemDto
     {

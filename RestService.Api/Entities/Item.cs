@@ -1,4 +1,4 @@
-namespace RestService.Entities
+namespace RestService.Api.Entities
 {
     public record Item
     {
