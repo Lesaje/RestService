@@ -37,7 +37,8 @@ public class ItemsControllerTests
     public async Task GetItemAsync_WithExistingItem_ReturnsExpectedItem()
     {
         // Arrange
-        var expectedItem = CreateItem();
+        var expectedItem = CreateRandomItem();
+        
         repositoryStub.Setup(repo => repo.GetItemAsync(It.IsAny<Guid>()))
             .ReturnsAsync(expectedItem);
 
@@ -52,7 +53,7 @@ public class ItemsControllerTests
             options => options.ComparingByMembers<Item>());
     }
 
-    private Item CreateItem() 
+    private Item CreateRandomItem() 
     {
         return new()
         {
