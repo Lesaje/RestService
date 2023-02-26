@@ -41,7 +41,7 @@ namespace RestService.Api.Controllers
         }
     
         [HttpPost]
-        public async Task<ActionResult<Item>> CreateItemAsync (CreateItemDto itemDto)
+        public async Task<ActionResult<Item>> CreateItemAsync (ItemDto itemDto)
         {
             Item item = new() {
                 Id = Guid.NewGuid(),
@@ -56,7 +56,7 @@ namespace RestService.Api.Controllers
         }
         
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateItemAsync (Guid id, UpdateItemDto itemDto)
+        public async Task<ActionResult> UpdateItemAsync (Guid id, ItemDto itemDto)
         {
             var existingItem = await repository.GetItemAsync(id);
 

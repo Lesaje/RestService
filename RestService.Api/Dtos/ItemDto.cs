@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestService.Api.Dtos
 {
-    public record CreateItemDto
+    public record ItemDto
     {
         [Required]
         public string Name {get; init;}
